@@ -88,7 +88,7 @@ const Home = ({ user, setUser }) => {
     }
 
     return (
-        <div className='main-container'>
+        <div className='home-container'>
             <div className='main-page'>
 
                 <div className='main-page-logo'>

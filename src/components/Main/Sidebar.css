@@ -1,0 +1,22 @@
+.sidebar-container {
+    width: 280px;
+    position: fixed;
+    height: 100vh;
+    /* background-color: aqua; */
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+}
+.navbar-logo-icon {
+    color: #FF5A5F;
+    font-size: 32px;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+}

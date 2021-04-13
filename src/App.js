@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import Home from './components/Home'
-import Main from './components/Main'
+import Main from './components/Main/Main.js'
 
 function App() {
 
-const [ user, setUser ] = useState(null);
+const [ user, setUser ] = useState(null); // toggle here
 
   return (
     <div className="App">
