@@ -1,3 +1,49 @@
 .main-container {
 height: 200vh;
 }
+
+.movie-db-container {
+   /* display: flex; */
+   /* justify-content: center; */
+   margin: 0 100px 0 300px;
+   padding-top: 100px;
+   /* height: 100vh; */
+}
+
+.main-title {
+    margin: -80px 0 15px 120px;
+    font-size: 40px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.genre-title {
+    margin-left: 130px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+.movie-carousel {
+    width: 90%;
+    /* background-color: pink; */
+    margin: auto;
+}
+
+.movie-carousel img {
+    width: 190px;
+}
+
+.movie-carousel div {
+    color: #fff;
+}
+
+.movie-title {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.movie-description {
+    width: 80%;
+    font-size: 14px;
+}
