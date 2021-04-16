@@ -4,7 +4,7 @@ import './Sidebar.css'
 import { RiMovieLine } from "react-icons/ri"; 
 
 
-const Sidebar = () => {
+const Sidebar = ({ setCurrentPage }) => {
 
     const userMenuItems = ['My Favourites', 'Watch Later'];
     const generalMenuItems = ['Trending', 'Recommended For You', 'Genres', 'Movies', 'TV Series'];
@@ -40,7 +40,7 @@ const Sidebar = () => {
                 <div className='general-menu-items'>
                     <ul>
                         { generalMenuItems.map(item => (
-                            <div className='list-row'>
+                            <div className='list-row' onClick={() => {setCurrentPage(item)}}>
                                 <li key={item}>{item}</li>
                             </div>
                         ))}
