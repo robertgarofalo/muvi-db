@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
 
-const CarouselModule = (props) => {
+const CarouselModule = ({children, data}) => {
 
     const responsive = {
         desktop: {
@@ -33,14 +33,14 @@ const CarouselModule = (props) => {
 
     return (
         <Carousel
-        additionalTransfrom={-95}
-        arrows
+        additionalTransfrom={-100}
+        arrows={data.length < 4 ? false : true}
         autoPlaySpeed={3000}
         centerMode={true}
         className="movie-carousel"
         containerClass="container-with-dots"
         dotListClass=""
-        draggable
+        draggable={false}
         focusOnSelect={false}
         infinite
         itemClass=""
@@ -52,9 +52,9 @@ const CarouselModule = (props) => {
         showDots={false}
         sliderClass="arrows"
         slidesToSlide={1}
-        swipeable
+        // swipeable
         >
-            {props.children}
+            {children}
 
         </Carousel>
     )

@@ -72,12 +72,51 @@ const Main = () => {
     }, [currentPage]);
 
     
+    // Genre list arr
+    const genreList = [
+        { genre:'Action', data: actionData },
+        { genre:'Adventure', data: adventureData },
+        { genre:'Comedy', data: comedyData },
+        { genre:'Drama', data: dramaData },
+        { genre:'Horror', data: horrorData },
+        { genre:'Romance', data: romanceData },
+        { genre:'Documentary', data: documentaryData },
+        { genre:'Thriller', data: thrillerData },
+        { genre:'Family', data: familyData }
+    ];
+
     
     // Carousel items
-    const carouselItems = (arr) => { 
+    const carouselItems = (data) => { 
+       
+        // Display carousel with less than 4 items from API
+        if(data.length < 4){
+            let emptyArr = [];
+            emptyArr.push(...data)
+
+            let missingItemsCount = 4 - data.length;
+            for (let i = 0; i < missingItemsCount; i++){
+                emptyArr.push({poster_path: shawShank, title: 'the fake title', overview: 'wee waa', empty: true})
+            };
+
+            return (
+                emptyArr.map(item => (
+                                 
+                    <div className={item.empty ? 'hidden' : ''}>
+                        <img src={`${movieDBURL}${item.poster_path}`} />
+                        <h3 className='movie-title'>{item.title}</h3>
+                        <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
+                    </div>
+                                    
+                        ))
+            )
+            
+        }
+
+        // Display Carousel which has more than 4 items from API
 
               return ( 
-                             arr.map(item => (
+                             data.map(item => (
                                  
                              <div>
                                  <img src={`${movieDBURL}${item.poster_path}`} />
@@ -96,50 +135,15 @@ const Main = () => {
              <div className='movie-db-container'>
                 <h1 className='main-title'>{currentPage}</h1> 
 
-                    <h3 className='genre-title'>Action</h3> 
-                    <CarouselModule>
-                    { carouselItems(actionData) }
-                    </CarouselModule>
-
-                    <h3 className='genre-title'>Adventure</h3> 
-                    <CarouselModule>
-                    { carouselItems(adventureData) }
-                    </CarouselModule>
-                    
-                    <h3 className='genre-title'>Comedy</h3> 
-                    <CarouselModule>
-                        { carouselItems(comedyData) }
-                    </CarouselModule>
-                    
-                    <h3 className='genre-title'>Drama</h3> 
-                    <CarouselModule>
-                        { carouselItems(dramaData) }
-                    </CarouselModule>
-
-                    <h3 className='genre-title'>Horror</h3> 
-                    <CarouselModule>
-                        { carouselItems(horrorData) }
-                    </CarouselModule>
-
-                    <h3 className='genre-title'>Romance</h3> 
-                    <CarouselModule>
-                        { carouselItems(romanceData) }
-                    </CarouselModule>
-
-                    <h3 className='genre-title'>Documentary</h3> 
-                    <CarouselModule>
-                        { carouselItems(documentaryData) }
-                    </CarouselModule>
- 
-                    <h3 className='genre-title'>Thriller</h3> 
-                    <CarouselModule>
-                        { carouselItems(thrillerData) }
-                    </CarouselModule>
- 
-                    <h3 className='genre-title'>Family</h3> 
-                    <CarouselModule>
-                        { carouselItems(familyData) }
-                    </CarouselModule>
+                { genreList.map(item => (
+                    <div className={item.data < 4 ? 'hidden' : ''}>
+                        <h3 className='genre-title'>{item.genre}</h3> 
+                        <CarouselModule data={item.data}>
+                        { carouselItems(item.data) }
+                        </CarouselModule>
+                                            
+                    </div>
+                )) }
  
             </div>
         </div>
