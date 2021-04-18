@@ -4,7 +4,7 @@ import './Sidebar.css'
 import { RiMovieLine } from "react-icons/ri"; 
 
 
-const Sidebar = ({ setCurrentPage }) => {
+const Sidebar = ({ setCurrentPage, setFetchMovies }) => {
 
     const userMenuItems = ['My Favourites', 'Watch Later'];
     const generalMenuItems = ['Trending', 'Recommended For You', 'Genres', 'Movies', 'TV Series'];
@@ -26,7 +26,10 @@ const Sidebar = ({ setCurrentPage }) => {
                     <ul>
                         { userMenuItems.map(item => (
                             <div className='list-row'>
-                                <li key={item}>{item}</li>
+                                <li key={item} onClick={() => { 
+                                    setCurrentPage(item);
+                                    setFetchMovies(false);
+                                    }}>{item}</li>
                                 <li>0</li>
                             </div>
                         ))}
@@ -40,7 +43,18 @@ const Sidebar = ({ setCurrentPage }) => {
                 <div className='general-menu-items'>
                     <ul>
                         { generalMenuItems.map(item => (
-                            <div className='list-row' onClick={() => {setCurrentPage(item)}}>
+                            <div className='list-row' onClick={() => {
+                                if (item === 'Trending' || item === 'Recommended For You' || item === 'Movies' || item === 'TV Series'){
+                                setCurrentPage(item);
+                                setFetchMovies(true);
+                                } else if (item === 'Genres'){
+                                    setCurrentPage(item);
+                                    setFetchMovies(false);
+                                } else {
+                                    setFetchMovies(false);
+                                }
+                                
+                                }}>
                                 <li key={item}>{item}</li>
                             </div>
                         ))}

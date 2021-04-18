@@ -39,9 +39,27 @@ height: auto;
     color: #fff;
 }
 
+.movie-title-row {
+    display: flex;
+    /* background-color: #FF5A5F; */
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 65px;
+}
+
 .movie-title {
     font-size: 16px;
     margin-top: 10px;
+}
+
+
+.like-heart-button {
+transition: 0.3s ease;
+}
+
+.like-heart-button:hover {
+transform: scale(1.2);
+cursor: pointer;
 }
 
 .movie-description {
@@ -52,3 +70,90 @@ height: auto;
 .hidden {
     display: none;
 }
+
+
+/* GENRES PAGE */
+
+.genre-container {
+    /* background-color: pink;  */
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    grid-template-rows: auto;
+    grid-gap: 45px;
+    height: 85vh;
+    padding: 0 100px;
+}
+
+.genre-item {
+    /* border: 2px solid red; */
+    padding: 40px 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+.genre-item:hover {
+    transform: scale(1.03);
+}
+
+.genre-item:active {
+    transform: scale(0.9999);
+    transition: 0.1s;
+}
+
+.genre-item:hover {
+    cursor: pointer;
+}
+
+.genre-card-item {
+    font-size: 28px;
+    color: #fff;
+}
+
+/* Individual Genre movie display */
+.genre-movies-display button,
+.genre-movies-display h1 {
+margin-left: 60px;
+}
+
+.genre-movie-container {
+    display: grid;
+    margin: auto;
+    width: 90%;
+    grid-gap: 30px;
+    grid-template-columns: repeat(4, 3fr);
+}
+
+.genre-movie-container img {
+    width: 180px;
+}
+
+.genre-movie {
+    display: flex;
+    flex-direction: column;
+}
+
+.genre-back-button {
+    background-color: #FF5A5F;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease;
+}
+
+.genre-back-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+/* .genre-back-button:active {
+    
+} */
