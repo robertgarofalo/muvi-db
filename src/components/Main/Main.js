@@ -121,7 +121,6 @@ const Main = ({ setUser }) => {
                 
         }
 
-
             return (
                 data.map((item) => (
                                  
@@ -164,7 +163,7 @@ const Main = ({ setUser }) => {
 
                 {/* Display if on the Genre Page */}
                 { currentPage === 'Genres' && 
-                     <Genre genreList={genreList}/>
+                     <Genre genreList={genreList} movieIds={movieIds} setMovieIds={setMovieIds} liked={liked}/>
                 }
 
                 
