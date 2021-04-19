@@ -28,13 +28,16 @@ const CarouselModule = ({children, data}) => {
         items: 2,
         partialVisibilityGutter: 30
         }
-    }
+    }        
 
+    console.log(data);
+
+    // const arr = data.filter(item => item.overview !== 'empty');
 
     return (
         <Carousel
-        additionalTransfrom={-100}
-        arrows={data.length < 4 ? false : true}
+        additionalTransfrom={-105}
+        arrows={data.some(item => item.empty) ? false : true}
         autoPlaySpeed={3000}
         centerMode={true}
         className="movie-carousel"

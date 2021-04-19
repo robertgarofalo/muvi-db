@@ -4,13 +4,14 @@ import Sidebar from './Sidebar'
 import Search from './Search'
 import Genre from './Genre'
 import MyFavourites from './MyFavourites'
+import LikedButton from './LikeButton'
 import "react-multi-carousel/lib/styles.css";
 import CarouselModule from './CarouselModule';
 import { movieDBAPI } from '../../config';
 import axios from 'axios';
-import shawShank from './images/shawshank.jpg'
-import { FaRegHeart } from 'react-icons/fa'
-import fire from '../../firebase/fire';
+// import shawShank from './images/shawshank.jpg'
+// import { FaRegHeart } from 'react-icons/fa'
+// import fire from '../../firebase/fire';
 
 const Main = () => {
     
@@ -29,28 +30,6 @@ const Main = () => {
     const [ documentaryData, setdocumentaryData ] = useState([]);
     const [ thrillerData, setThrillerData ] = useState([]);
     const [ familyData, setFamilyData ] = useState([]);
-
-    let user = fire.auth().currentUser;
-    // LIKE A MOVIE
-    const addLikedMovie = (item, index) => {
-        // check if document exists? if it does, merge new liked movie fields otherwise create doc and fields.
-        let userDb = fire.firestore().collection(user.uid).doc('Liked Movies');
-        
-        //Add new liked movie
-            userDb.set({
-                index: {
-            title: item.title,
-            posterPath: item.poster_path,
-            overview: item.overview
-                }
-        }, { merge: true })
-        .then(() => {
-            console.log("Document successfully written!");
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
-        });
-    }
 
     useEffect(() => {
   // Genres - action 28, adventure 12, comedy 35 , drama 18, horror 27, romance 10749, documentary 99, thriller 53, family 10751
@@ -82,12 +61,12 @@ const Main = () => {
                 case 'Genres' :
                 case 'Genres Subpage':              
                 default :
-                // result = await axios(`https://api.themoviedb.org/3/trending/all/day?api_key=${movieDBAPI}`)
                 break;
             }
 
             let movies = result.data.results;
-    
+            console.log(movies);
+
             setActionData(movies.filter(mov => mov.genre_ids.includes(28)));
             setAdventureData(movies.filter(mov => mov.genre_ids.includes(12)));
             setComedyData(movies.filter(mov => mov.genre_ids.includes(35)));
@@ -120,29 +99,29 @@ const Main = () => {
         {genre:'Thriller', data: thrillerData, iconName: 'FaSkull', bgColor: '#000', iconColor: '#fff'},
         {genre:'Family', data: familyData, iconName: 'FaUsers', bgColor: '#FFC354', iconColor: '#8CC152'}
     ];
-
     
     // Carousel items
     const carouselItems = (data) => { 
-       
+
         // Display carousel with less than 4 items from API
-        if(data.length < 4){
-            let movieArr = [];
-            movieArr.push(...data)
+        if(data.length < 4 && data.length >= 1){
 
             let missingItemsCount = 4 - data.length;
             for (let i = 0; i < missingItemsCount; i++){
-                movieArr.push({poster_path: shawShank, title: 'the fake title', overview: 'wee waa', empty: true})
-            };
+                data.push({poster_path: 'empty', title: 'empty', overview: 'empty', empty: true})
+            }; 
+                
+        }
+
 
             return (
-                movieArr.map(item => (
+                data.map((item) => (
                                  
                     <div className={item.empty ? 'hidden' : ''}>
                         <img src={`${movieDBURL}${item.poster_path}`} />
                         <div className='movie-title-row'>
                             <h3 className='movie-title'>{item.title}</h3>
-                            <FaRegHeart className='like-heart-button' onClick={() => addLikedMovie(item)}/>
+                             <LikedButton item={item} />
                         </div>
                         <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
                     </div>
@@ -150,26 +129,9 @@ const Main = () => {
                         ))
             )
             
-        }
-
-        // Display Carousel which has more than 4 items from API
-
-              return ( 
-                             data.map(item => (
-                                 
-                             <div>
-                                 <img src={`${movieDBURL}${item.poster_path}`} />
-                                 <div className='movie-title-row'>
-                                      <h3 className='movie-title'>{item.title}</h3>
-                                      <FaRegHeart className='like-heart-button' onClick={() => addLikedMovie(item)}/>
-                                 </div>
-                                 <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 80) + '...' : item.overview + '...'}</p>
-                             </div>
-                                             
-                                 ))
-                     )
       };
 
+      // VIEWS
     return (
         <div className='main-container'>
             <Sidebar setCurrentPage={setCurrentPage} setFetchMovies={setFetchMovies}/>

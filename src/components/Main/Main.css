@@ -55,6 +55,7 @@ height: auto;
 
 .like-heart-button {
 transition: 0.3s ease;
+color: #fff;
 }
 
 .like-heart-button:hover {
@@ -115,8 +116,12 @@ cursor: pointer;
 
 /* Individual Genre movie display */
 .genre-movies-display button,
-.genre-movies-display h1 {
-margin-left: 60px;
+.genre-movies-display h2 {
+margin-left: 80px;
+}
+
+.genre-movies-display h2 {
+    color: #fff;
 }
 
 .genre-movie-container {
@@ -134,6 +139,16 @@ margin-left: 60px;
 .genre-movie {
     display: flex;
     flex-direction: column;
+}
+
+.movie-title {
+    color: #fff;
+    margin-bottom: 1px;
+}
+
+.movie-description {
+    font-size: 16px;
+    color: #fff;
 }
 
 .genre-back-button {
@@ -154,6 +169,3 @@ margin-left: 60px;
     transform: scale(1.1);
 }
 
-/* .genre-back-button:active {
-    
-} */

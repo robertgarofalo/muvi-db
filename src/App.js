@@ -5,7 +5,7 @@ import Main from './components/Main/Main.js'
 
 function App() {
 
-const [ user, setUser ] = useState(false); // login / out here
+const [ user, setUser ] = useState(true); // login / out here
 
   return (
     <div className="App">
@@ -14,6 +14,7 @@ const [ user, setUser ] = useState(false); // login / out here
       <Home user={user} setUser={setUser}/> 
       )
       :
+      // TO DO: set up if user is logged in:
       <Main />
     
     }

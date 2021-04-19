@@ -5,6 +5,8 @@ import * as FontAwesome from "react-icons/fa";
 import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios'
 import { movieDBAPI } from '../../config';
+import LikedButton from './LikeButton'
+
 
 const Genre = ({ genreList }) => {
     const movieDBURL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
@@ -112,15 +114,18 @@ const Genre = ({ genreList }) => {
                             setSelectedSubPage('genre menu');
                             setSelectedGenre(null);
                             }}>Back</button>
-                        <h1>{selectedGenre}</h1>
+                        <h2>{selectedGenre}</h2>
 
                         <div className='genre-movie-container'>
                                 { genreData.map(item => (        
                                         <div className='genre-movie'>
                                             <img src={`${movieDBURL}${item.poster_path}`} />
-                                            <h3 className='movie-title'>{item.title}</h3>
+                                                <div className='movie-title-row'>
+                                                     <h3 className='movie-title'>{item.title}</h3>
+                                                     <LikedButton item={item} />
+                                                 </div>
                                             <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
-                                        </div>
+                                    </div>
                                     
                                 )) }
                         </div>
