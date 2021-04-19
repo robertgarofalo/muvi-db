@@ -6,7 +6,7 @@ import { RiMovieLine } from "react-icons/ri";
 
 const Sidebar = ({ setCurrentPage, setFetchMovies }) => {
 
-    const userMenuItems = ['My Favourites', 'Watch Later'];
+    const userMenuItems = ['My Favourites'];
     const generalMenuItems = ['Trending', 'Recommended For You', 'Genres', 'Movies', 'TV Series'];
 
     return (
@@ -30,7 +30,7 @@ const Sidebar = ({ setCurrentPage, setFetchMovies }) => {
                                     setCurrentPage(item);
                                     setFetchMovies(false);
                                     }}>{item}</li>
-                                <li>0</li>
+                                {/* <li>0</li> */}
                             </div>
                         ))}
                     </ul>

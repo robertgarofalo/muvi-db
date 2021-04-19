@@ -11,7 +11,7 @@ const [ user, setUser ] = useState(true); // login / out here
     <div className="App">
       { !user ? 
       (
-      <Home user={user} setUser={setUser}/> 
+      <Home user={user} setUser={setUser} /> 
       )
       :
       // TO DO: set up if user is logged in:

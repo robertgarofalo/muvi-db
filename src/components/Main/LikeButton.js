@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Main.css';
-import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import fire from '../../firebase/fire';
 
 const LikeButton = ({ item }) => {
@@ -11,15 +11,15 @@ const LikeButton = ({ item }) => {
     const [ liked, setLiked ] = useState('#fff'); 
     const [ movieId, setMovieId ] = useState('');
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if(movieId){
-            console.log(movieId);
-        } else {
-            return;
-        }
+    //     if(movieId){
+    //         console.log(movieId);
+    //     } else {
+    //         return;
+    //     }
 
-    }, [movieId])
+    // }, [movieId])
 
 // LIKE A MOVIE
 const toggleLikedMovieHandler = (item) => {
@@ -49,7 +49,7 @@ const toggleLikedMovieHandler = (item) => {
         }, { merge: true })
         .then(() => {
             console.log("Document successfully written!");
-            setLiked("red");
+            setLiked("#FF5A5F");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
@@ -68,7 +68,8 @@ const toggleLikedMovieHandler = (item) => {
 
     return (
         <div>
-            <FaRegHeart 
+            <FaHeart 
+            className='like-heart-button'
             style={{color: liked}}
             onClick={() => {
                 toggleLikedMovieHandler(item);

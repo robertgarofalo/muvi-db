@@ -12,11 +12,8 @@
 }
 
 .profile-container p {
-    transition: 0.5s ease;
+    /* transition: 0.5s ease; */
     font-size: 14px;
+    margin-top: 25px;
 }
 
-.profile-container p:hover {
-color: #FF5A5F;
-cursor: pointer;
-}

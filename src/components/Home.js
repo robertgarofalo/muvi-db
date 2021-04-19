@@ -9,7 +9,6 @@ const Home = ({ user, setUser }) => {
     const [isRegistered, setIsRegistered] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
 
-
     // Register new user
     const registerNewUser = () => {  
        // Check fields

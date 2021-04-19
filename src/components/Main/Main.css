@@ -55,7 +55,6 @@ height: auto;
 
 .like-heart-button {
 transition: 0.3s ease;
-color: #fff;
 }
 
 .like-heart-button:hover {
@@ -130,15 +129,22 @@ margin-left: 80px;
     width: 90%;
     grid-gap: 30px;
     grid-template-columns: repeat(4, 3fr);
+    
 }
 
 .genre-movie-container img {
     width: 180px;
+    
 }
 
 .genre-movie {
     display: flex;
     flex-direction: column;
+    
+}
+
+.favourites {
+    margin-top: 50px;
 }
 
 .movie-title {
@@ -169,3 +175,10 @@ margin-left: 80px;
     transform: scale(1.1);
 }
 
+
+/* My favourites */
+
+/* .my-favourites-container {
+    display: grid;
+    grid-template-columns: ;
+} */
