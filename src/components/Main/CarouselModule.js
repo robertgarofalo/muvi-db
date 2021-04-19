@@ -31,7 +31,7 @@ const CarouselModule = ({children, data}) => {
         }
     }        
 
-    console.log(data);
+    // console.log(data);
 
     // const arr = data.filter(item => item.overview !== 'empty');
 

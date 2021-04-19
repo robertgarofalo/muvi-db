@@ -10,6 +10,8 @@ import CarouselModule from './CarouselModule';
 import { movieDBAPI } from '../../config';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import fire from '../../firebase/fire';
+
 // import shawShank from './images/shawshank.jpg'
 // import { FaRegHeart } from 'react-icons/fa'
 // import fire from '../../firebase/fire';
@@ -20,6 +22,9 @@ const Main = ({ setUser }) => {
 
     const [ currentPage, setCurrentPage ] = useState('Trending');
     const [ fetchMovies, setFetchMovies ] = useState(true);
+
+    const [ movieIds, setMovieIds ] = useState([]);
+    const [ liked, setLiked ] = useState(null); 
 
     // Genre States
     const [ actionData, setActionData ] = useState([]);
@@ -66,7 +71,7 @@ const Main = ({ setUser }) => {
             }
 
             let movies = result.data.results;
-            console.log(movies);
+            // console.log(movies);
 
             setActionData(movies.filter(mov => mov.genre_ids.includes(28)));
             setAdventureData(movies.filter(mov => mov.genre_ids.includes(12)));
@@ -100,6 +105,8 @@ const Main = ({ setUser }) => {
         {genre:'Thriller', data: thrillerData, iconName: 'FaSkull', bgColor: '#000', iconColor: '#fff'},
         {genre:'Family', data: familyData, iconName: 'FaUsers', bgColor: '#FFC354', iconColor: '#8CC152'}
     ];
+
+    // console.log('genreList - ', genreList);
     
     // Carousel items
     const carouselItems = (data) => { 
@@ -114,6 +121,7 @@ const Main = ({ setUser }) => {
                 
         }
 
+
             return (
                 data.map((item) => (
                                  
@@ -125,7 +133,7 @@ const Main = ({ setUser }) => {
                         <img src={`${movieDBURL}${item.poster_path}`} />
                         <div className='movie-title-row'>
                             <h3 className='movie-title'>{item.title}</h3>
-                             <LikedButton item={item} />
+                             <LikedButton item={item} movieIds={movieIds} setMovieIds={setMovieIds} liked={liked}/>
                         </div>
                         <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
                     </motion.div>

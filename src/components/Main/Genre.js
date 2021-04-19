@@ -9,7 +9,7 @@ import LikedButton from './LikeButton'
 import { motion } from 'framer-motion'
 
 
-const Genre = ({ genreList }) => {
+const Genre = ({ genreList, movieIds, setMovieIds, liked }) => {
     const movieDBURL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 
     const [ selectedSubPage, setSelectedSubPage ] = useState('genre menu');
@@ -73,7 +73,7 @@ const Genre = ({ genreList }) => {
             // console.log(result);
             // console.log(genreCode)
             // console.log(movies.filter(mov => mov.genre_ids.includes(genreCode)));
-            console.log(genreData);
+            // console.log(genreData);
         }
 
         fetchGenreList();
@@ -137,7 +137,7 @@ const Genre = ({ genreList }) => {
                                             <img src={`${movieDBURL}${item.poster_path}`} />
                                                 <div className='movie-title-row'>
                                                      <h3 className='movie-title'>{item.title}</h3>
-                                                     <LikedButton item={item} />
+                                                     {/* <LikedButton item={item} movieIds={movieIds} setMovieIds={setMovieIds} liked={liked}/> */}
                                                  </div>
                                             <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
                                     </div>

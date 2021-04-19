@@ -13,7 +13,7 @@ const MyFavourites = () => {
     useEffect(() => {
         let arr = [];
         let user = fire.auth().currentUser;
-        let db = fire.firestore().collection(user.uid).doc('Liked Movies').collection('Details');
+        let db = fire.firestore().collection(user.email).doc('Liked Movies').collection('Details');
         db.get().then((querySnapshop) => {
             querySnapshop.forEach((doc) => {
                 console.log(doc.data());

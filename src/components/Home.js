@@ -107,7 +107,18 @@ const Home = ({ user, setUser }) => {
                 
                 <div className='main-form'>
                     <input type="email" placeholder="Email address" onChange={({target}) => setEmail(target.value)} value={email}/>
-                    <input type="password" placeholder="Password" onChange={({target}) => setPassword(target.value)} value={password}/>
+                    <input type="password" placeholder="Password" 
+                    onChange={({target}) => setPassword(target.value)} 
+                    onKeyPress={(e) => {
+                        if (isRegistered && e.key === "Enter") {
+                            signInUser();
+                        } else if(!isRegistered && e.key === "Enter") {
+                            registerNewUser(); 
+                        } else {
+                            console.log('error');
+                        }
+                    }}
+                    value={password}/>
                     <div className='error-container'>
                         <p className={`error-message ${!errorMessage ? 'invisibile' : ''}`}>{errorMessage}</p>
                     </div>
