@@ -4,10 +4,10 @@ import './Sidebar.css'
 import { RiMovieLine } from "react-icons/ri"; 
 
 
-const Sidebar = ({ setCurrentPage, setFetchMovies }) => {
+const Sidebar = ({ setCurrentPage, setFetchMovies, setUser }) => {
 
     const userMenuItems = ['My Favourites'];
-    const generalMenuItems = ['Trending', 'Recommended For You', 'Genres', 'Movies', 'TV Series'];
+    const generalMenuItems = ['Trending', 'Recommended For You', 'Genres', 'Movies'];
 
     return (
         <div className='sidebar-container'>
@@ -17,7 +17,7 @@ const Sidebar = ({ setCurrentPage, setFetchMovies }) => {
                 <h1>muvi<span className='muvi'>DB</span></h1>           
             </div>
 
-            <UserProfile />
+            <UserProfile setUser={setUser} />
 
             <div className='sidebar-menu'>
                

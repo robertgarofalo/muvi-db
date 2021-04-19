@@ -9,11 +9,12 @@ import "react-multi-carousel/lib/styles.css";
 import CarouselModule from './CarouselModule';
 import { movieDBAPI } from '../../config';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 // import shawShank from './images/shawshank.jpg'
 // import { FaRegHeart } from 'react-icons/fa'
 // import fire from '../../firebase/fire';
 
-const Main = () => {
+const Main = ({ setUser }) => {
     
     const movieDBURL = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 
@@ -54,9 +55,9 @@ const Main = () => {
                 result = await axios(`https://api.themoviedb.org/3/trending/movie/week?api_key=${movieDBAPI}`)
                 break;
 
-                case 'TV Series' :
-                result = await axios(`https://api.themoviedb.org/3/trending/tv/week?api_key=${movieDBAPI}`)
-                break;
+                // case 'TV Series' :
+                // result = await axios(`https://api.themoviedb.org/3/trending/tv/week?api_key=${movieDBAPI}`)
+                // break;
 
                 case 'Genres' :
                 case 'Genres Subpage':              
@@ -113,30 +114,43 @@ const Main = () => {
                 
         }
 
-
             return (
                 data.map((item) => (
                                  
-                    <div className={item.empty ? 'hidden' : ''}>
+                    <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                    className={item.empty ? 'hidden' : ''}>
                         <img src={`${movieDBURL}${item.poster_path}`} />
                         <div className='movie-title-row'>
                             <h3 className='movie-title'>{item.title}</h3>
                              <LikedButton item={item} />
                         </div>
                         <p className='movie-description'>{item.overview.length > 10 ? item.overview.substring(0, 89) + '...' : item.overview + '...'}</p>
-                    </div>
+                    </motion.div>
                                     
                         ))
             )
             
       };
 
+      const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
+
       // VIEWS
     return (
+
         <div className='main-container'>
-            <Sidebar setCurrentPage={setCurrentPage} setFetchMovies={setFetchMovies}/>
-            <Search />
-             <div className={`movie-db-container`}>
+            <Sidebar setCurrentPage={setCurrentPage} setFetchMovies={setFetchMovies} setUser={setUser}/>
+            {/* <Search /> */}
+             <motion.div 
+             initial="hidden"
+             animate="visible"
+             variants={variants}
+             className={`movie-db-container`}>
                 <h1 className='main-title'>{currentPage}</h1> 
              
 
@@ -149,12 +163,16 @@ const Main = () => {
 
                 {/* Display if fetchMovies is true */}
                 {fetchMovies && genreList.map(item => (
-                    <div className={item.data < 4 ? 'hidden' : ''}>
+                    <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                    className={item.data < 4 ? 'hidden' : ''}>
                         <h3 className='genre-title'>{item.genre}</h3> 
                         <CarouselModule data={item.data}>
                         { carouselItems(item.data) }
                         </CarouselModule>
-                    </div>
+                    </motion.div>
                 )) 
                 }
 
@@ -170,7 +188,7 @@ const Main = () => {
 
 
  
-            </div>
+            </motion.div>
         </div>
     )
 }

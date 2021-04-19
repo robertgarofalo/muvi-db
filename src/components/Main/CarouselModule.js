@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from "react-multi-carousel";
+import { motion } from 'framer-motion'
 
 const CarouselModule = ({children, data}) => {
 
@@ -34,7 +35,17 @@ const CarouselModule = ({children, data}) => {
 
     // const arr = data.filter(item => item.overview !== 'empty');
 
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }
+
     return (
+        <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        >
         <Carousel
         additionalTransfrom={-105}
         arrows={data.some(item => item.empty) ? false : true}
@@ -60,6 +71,7 @@ const CarouselModule = ({children, data}) => {
             {children}
 
         </Carousel>
+        </motion.div>
     )
 }
 

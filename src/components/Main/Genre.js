@@ -6,6 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios'
 import { movieDBAPI } from '../../config';
 import LikedButton from './LikeButton'
+import { motion } from 'framer-motion'
 
 
 const Genre = ({ genreList }) => {
@@ -80,10 +81,20 @@ const Genre = ({ genreList }) => {
     }
     }, [selectedGenre])
 
+
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1}
+    }
+
     return (
         <>
         { selectedSubPage === 'genre menu' && 
-                <div className='genre-container'>
+                <motion.div 
+                 initial="hidden"
+                 animate="visible"
+                 variants={variants}
+                className='genre-container'>
                      { genreList.map(item => (
                     <div className='genre-item' 
                          style={
@@ -103,12 +114,16 @@ const Genre = ({ genreList }) => {
                     </div>
                     )) } 
                         
-                </div> 
+                </motion.div> 
                     }
 
 
                 { selectedSubPage === 'genre list' && 
-                    <div className='genre-movies-display'>
+                    <motion.div 
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                    className='genre-movies-display'>
                         <button className='genre-back-button'
                                 onClick={() => {
                             setSelectedSubPage('genre menu');
@@ -130,7 +145,7 @@ const Genre = ({ genreList }) => {
                                 )) }
                         </div>
                             
-                    </div>
+                    </motion.div>
                 }
                     </>
     )

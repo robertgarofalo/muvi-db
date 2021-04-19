@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Home.css'
 import { RiMovieLine } from "react-icons/ri";
 import fire from '../firebase/fire';
+import { motion } from 'framer-motion'
 
 const Home = ({ user, setUser }) => {
     const [email, setEmail] = useState(null);
@@ -86,8 +87,17 @@ const Home = ({ user, setUser }) => {
 
     }
 
+    const variants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 }
+      }
+
     return (
-        <div className='home-container'>
+        <motion.div 
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        className='home-container'>
             <div className='main-page'>
 
                 <div className='main-page-logo'>
@@ -104,7 +114,8 @@ const Home = ({ user, setUser }) => {
                     {isRegistered ? (
                         // LOGIN
                     <>
-                        <button onClick={signInUser}>LOGIN</button>
+                        <button onClick={signInUser}
+                        >LOGIN</button>
                         <p className='forgot-password'>Forgot your password? <span>Click here</span></p>
                         <p className='sign-up-here'>Not registered? <span onClick={() => setIsRegistered(false)}>Sign up here</span></p>
                     </>
@@ -113,15 +124,17 @@ const Home = ({ user, setUser }) => {
                     (
                         // REGISTER
                     <>
-                    <button onClick={registerNewUser}>REGISTER</button>
+                    <button onClick={registerNewUser}
+                            
+                    >REGISTER</button>
                     <p className='sign-up-here'>Already registered? <span onClick={() => setIsRegistered(true)}>Login here</span></p>
                     </>
                     )}
-
+                    
                     
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 
 }
